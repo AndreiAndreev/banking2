@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sales Prospecting Software | B2B Marketing Automation</title>
+
+    <!--Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+    <!-- Bootstrap 3.3.5 -->
+    <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" />
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+
+    <!-- Theme style -->
+    <link type="text/css" rel="stylesheet" href="../static/css/AdminLTE.min.css"
+          th:href="@{/css/AdminLTE.min.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/slideshow.css"
+          th:href="@{/css/slideshow.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/plugins/iCheck/all.css"
+          th:href="@{/plugins/iCheck/all.css}"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+     WARNING: Respond.js doesn't work if you view the page via file://
+    [if lt IE 9]>-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!--<![endif]-->
+</head>
+
+<body class="hold-transition login-page">
+
+<ul class="cb-slideshow">
+    <li class=""><span>Image 01</span></li>
+    <li class=""><span>Image 02</span></li>
+    <li class=""><span>Image 03</span></li>
+    <li class=""><span>Image 04</span></li>
+    <li class=""><span>Image 05</span></li>
+    <li class=""><span>Image 06</span></li>
+</ul>
+
+<div class="login-box" style="position: relative;">
+    <div class="login-box-body">
+        <div class="text-center">
+            <a href="/">
+                <img th:src="@{/images/logo_navbar_black.png}"
+                     src="../images/logo_navbar_black.png" class="img-responsive center-block" alt="Responsive image"/>
+            </a>
+        </div>
+        <hr/>
+        <h2 class="text-center">Sign in</h2>
+        <hr/>
+        <form name="f" data-th-action="@{/sign-in}" method="post">
+            <fieldset>
+                <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
+                <div data-th-if="${param.error}" class="alert alert-danger">
+                    Wrong email or password
+                </div>
+                <div class="form-group has-feedback">
+                    <span class=" fa fa-envelope-o form-control-feedback"></span>
+                    <input class="form-control" placeholder="Email" type="text" id="username" name="username"></input>
+                </div>
+                <div class="form-group has-feedback">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <input class="form-control" placeholder="Password" type="password" id="password" name="password"></input>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="checkbox" name="remember-me" id="remember-me" class="icheckbox_minimal-blue" style="margin-top: 0px;"></input>
+                    <label for="remember-me" style="margin-bottom: 0px;">Remember Me</label>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Enter</button>
+                        <p class="text-center"><a href="/forget-password">Forgot your password?</a></p>
+                        <p class="text-center"><a href="/sign-up">New User? Register Here</a></p>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div><!-- /.login-box -->
+
+<!--jQuery 2.1.4-->
+<script src="../static/js/jQuery-2.1.4.min.js"
+        th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+
+<!-- Bootstrap 3.3.5 -->
+<script src="../static/js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
+
+<script src="../static/js/slideshow.js"
+        th:src="@{/js/slideshow.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<nav xmlns:th="http://www.w3.org/1999/xhtml" id="mainNav" class="navbar navbar-default navbar-fixed-top"
+     style="min-height: 0;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px;" data-th-fragment="nav-bar">
+    <div class="container" style="font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <div class="navbar-brand">
+                 <a href="#" class="scroll-to">
+                     <img class="default-logo" th:src="@{/images/logo_navbar_white.png}" style="position:absolute; bottom: 5px;"
+                          src="../images/logo_navbar_white.png" alt="Prospecting.io"/>
+                     <img class="shrink-logo" th:src="@{/images/logo_navbar_black.png}" style="position:absolute; bottom: 5px;"
+                          src="../images/logo_navbar_black.png" alt="Prospecting.io"/>
+                 </a>
+             </div>-->
+            <div class="navbar-brand" >
+                <a class="page-scroll" href="/">
+                    <img id="logo_white" th:src="@{/images/logo_navbar_white.png}"
+                         style="position:relative; display: inherit;"
+                         src="../images/logo_navbar_white.png" class="img-responsive" alt="Prospecting.io"/>
+                    <img id="logo_black" th:src="@{/images/logo_navbar_black.png}"
+                         style="position:relative; display: none;"
+                         src="../images/logo_navbar_black.png" class="img-responsive" alt="Prospecting.io"/>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" th:if="*{user} == null">
+                <li style="margin-top: 6px;">
+                    <a class="page-scroll btn" href="/plans" id="pricingLink">
+                        PRICING
+                    </a>
+                </li>
+                <li style="margin-top: 6px;">
+                    <a class="page-scroll btn" href="/sign-in" id="loginLink">
+                        LOGIN
+                    </a>
+                </li>
+                <li>
+                    <a class="page-scroll btn" href="/sign-up" id="startLink" style="padding: 10px;">
+                        <button type="button" class="light-orange-btn pricing-btn" id="btnSuNL">
+                            Start Prospecting
+                        </button>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav navbar-nav pull-left" th:if="*{user} != null" id="loginNoneBox">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/start-prospecting">
+                            Start Prospecting
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/prospects">FOUND PROSPECTS</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav navbar-nav pull-right" th:if="*{user} != null">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/plans" id="logoPricing"> PRICING </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="infoLogin">
+                            <img th:src="@{/account/qr/${user.id}}" class="img-circle" alt="Responsive image"
+                                 height="25" width="25"/>
+                            <span data-th-text="*{user.getName()}"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/account/profile">
+                                    My Account
+                                </a>
+                            </li>
+                            <li th:if="*{user.getRolename()} =='ADMIN'">
+                                <a href="/dashboard" class="account-actions-log-out">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/j_spring_security_logout" class="account-actions-log-out">
+                                    Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+
+        <div class="alert alert-info text-center" hidden="hidden" id="messageInst" style="margin-top: 10px;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Please install our <a href="https://chrome.google.com/webstore/detail/prospecting/fhepkdmcgkhfnillfmlebdebcjcdagpg" style="color: #00ca6d; text-decoration: underline;">Chrome extension</a> before performing a search
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+</nav>

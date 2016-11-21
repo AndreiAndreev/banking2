@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plans | PIO Backend</title>
+    <!--Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <!-- Bootstrap 3.3.5 -->
+    <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../static/plugins/datatables/dataTables.bootstrap.css"
+          th:href="@{/plugins/datatables/dataTables.bootstrap.css}"/>
+    <!-- Theme style -->
+    <link type="text/css" rel="stylesheet" href="../static/css/AdminLTE.min.css"
+          th:href="@{/css/AdminLTE.min.css}"/>
+    <link type="text/css" rel="stylesheet" href="../static/css/skins/_all-skins.min.css"
+          th:href="@{/css/skins/_all-skins.min.css}" />
+
+    <!--<script src="https://rawgit.com/Tropik3572/OpenUniversity/master/src/main/resources/static/plugins/jQuery/jQuery-2.1.4.min.js"></script>-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+     WARNING: Respond.js doesn't work if you view the page via file://
+    [if lt IE 9]>-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!--<![endif]-->
+</head>
+<body class=" fixed hold-transition sidebar-mini skin-purple">
+<div id="wrapper">
+    <div data-th-replace="fragments/sb-admin :: top-nav"></div>
+    <div data-th-replace="fragments/sb-admin :: vert-nav"></div>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>Members</h1>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                Plans details
+                            </h3>
+                            <div class="box-tools">
+                                <a href="/dashboard/billing/plans" class="btn btn-default btn-sm">
+                                    <i class="fa fa-times">
+                                        Cancel
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <form class="form" action="#" data-th-action="@{/dashboard/billing/plans/create}" data-th-object="${plan}" method="post">
+                                <fieldset>
+                                    <legend>General information</legend>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Name
+                                        </label>
+                                        <input class="form-control" type="text" data-th-field="*{name}" />
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <p class="help-block">
+                                        Name of the plan, to be displayed on invoices and in the web interface.
+                                    </p>
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Description
+                                        </label>
+                                        <textarea rows="5" class="form-control" type="text" data-th-field="*{description}" />
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <p class="help-block">
+                                        Short description of the plan.
+                                    </p>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="true" name="isPublished" data-th-field="*{published}" />
+                                                Allow customers to select this plan
+                                            </label>
+                                        </div>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>General information</legend>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" data-required="true">
+                                                <label class="control-label">Price</label>
+                                                <input type="number" name="amount" min="0" step="0.01" class="form-control" data-th-field="*{price}"/>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                A positive integer (or <code>0</code> for a free plan) representing
+                                                how much to charge (on a recurring basis).
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" data-required="true">
+                                                <label class="control-label">Currency</label>
+                                                <select class="form-control" data-th-field="*{currency}" id="gender">
+                                                    <option
+                                                            th:each="currency : ${currencies}"
+                                                            th:value="${currency}"
+                                                            th:text="${currency}">
+                                                    </option>
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                Currency to charge in.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" data-required="true">
+                                                <label class="control-label">Billing interval</label>
+                                                <select class="form-control" data-th-field="*{billingInterval}" id="billingInterval">
+                                                    <option
+                                                            th:each="interval : ${intervals}"
+                                                            th:value="${interval}"
+                                                            th:text="${interval}">
+                                                    </option>
+                                                </select>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                Specifies billing frequency. Either day, week, month or year.
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Billing interval count</label>
+                                                <input type="number" name="interval.count" max="365" min="1" class="form-control" data-th-field="*{intervalCount}"/>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                The number of intervals between each subscription billing.
+                                                <br/>
+                                                For example, if interval is "month" and interval count is "3", bills every 3
+                                                months.
+                                                <br/>
+                                                Maximum of one year interval allowed (<code>1 year</code>,
+                                                <code>12 months</code>, or <code>52 weeks</code>).
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" data-required="true">
+                                                <label class="control-label">Prospects limit</label>
+                                                <input type="number" name="limits.prospects" required="" min="0" class="form-control" data-th-field="*{prospectLimit}"/>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                A positive number (or <code>0</code> for unlimited) representing how much
+                                                prospects can be saved to the notepad.
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" data-required="true">
+                                                <label class="control-label">Searches limit</label>
+                                                <input type="number" name="limits.searches" required="" min="0" class="form-control" data-th-field="*{searchesLimit}"/>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                A positive number (or <code>0</code> for unlimited) representing how much
+                                                prospect searches can be performed per billing period.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" data-required="true">
+                                                <label class="control-label">Prospects limit</label>
+                                                <input type="number" name="limits.foundEmails" required="" min="0" class="form-control"  data-th-field="*{foundLimit}"/>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                A positive number (or <code>0</code> for unlimited) representing how much
+                                                prospect email addresses (with FAE possibility rank &gt; 100%) can be found per billing period.
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Trial period</label>
+                                                <input type="number" name="trial" min="0" class="form-control" data-th-field="*{trialPeriod}"/>
+                                                <span class="help-block"></span>
+                                            </div>
+                                            <p class="help-block">
+                                                Specifies a trial period in (an integer number of) days.
+                                                <br/>
+                                                If you include a trial period, the customer won’t be billed for the first
+                                                time until the trial period ends.
+                                                If the customer cancels before the trial period is over, she’ll never be
+                                                billed at all.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Miscellaneous</legend>
+                                    <div class="form-group">
+                                        <label class="control-label">Statement descriptor</label>
+                                        <input type="text" name="descriptor" maxlength="22" class="form-control" data-th-field="*{statementDescriptor}"/>
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <p class="help-block">
+                                        An arbitrary string to be displayed on your customer’s credit card statement.
+                                        This may be up to 22 characters.
+                                        <br/>
+                                        As an example, if the item you’re charging for is your <code>Silver Plan</code>,
+                                        you may want to specify a statement descriptor of <code>PIO Silver Plan</code>.
+                                        <br/>
+                                        The statement description may not include <code>&lt;&gt;"'</code> characters,
+                                        and will appear on your customer’s statement in capital letters.
+                                        Non-ASCII characters are automatically stripped.
+                                        <br/>
+                                        While most banks display this information consistently, some may display it
+                                        incorrectly or not at all.
+                                    </p>
+                                </fieldset>
+                                <div class="text-right">
+                                    <a href="/dashboard//billing/plans" class="btn btn-default btn-sm">
+                                        <i class="fa fa-times"></i>
+                                        &nbsp;
+                                        Cancel
+                                    </a>
+                                    <button type="submit" class="btn btn-primary ladda-button" data-style="zoom-out">
+                                        <i class="fa fa-floppy-o"></i>
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>              <!-- /#wrapper -->
+
+<!--jQuery 2.1.4-->
+<script src="../static/js/jQuery-2.1.4.min.js"
+        th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="../static/js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/sb-admin.min.js"
+        th:src="@{/js/sb-admin.js}"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="../static/js/jquery.metisMenu.js"
+        th:src="@{/js/jquery.metisMenu.js}"></script>
+<script src="../static/js/app.js"
+        th:src="@{/js/app.js}"></script>
+<script src="../static/plugins/jQueryUI/jquery-ui.min.js"
+        th:src="@{/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<script src="../static/plugins/datatables/jquery.dataTables.min.js"
+        th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script src="../static/plugins/datatables/dataTables.bootstrap.min.js"
+        th:src="@{/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+<script src="../static/plugins/slimscroll/jquery.slimscroll.min.js"
+        th:src="@{/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,1119 @@
+/**
+ * Please do not edit the placeholder variables here. You can configure them on conf/presets.json.
+ * Bootrstrap version 3.1.0
+ * NOTE: Some of the Twitter Bootstrap's default style classes are modified to suit better.
+
+#cb-wrapper-hp                          //checkout, add/update card
+|-- #cb-main-content                    //order summay and existing card details
+    |-- #cb-order
+    |-- #cb-existing-card
+|-- #cb-main-form                       //account, billing, shipping, payment(card) form fields,
+    |-- #cb-account
+    |-- #cb-billing
+    |-- #cb-shipping
+    |-- #cb-payment
+|-- #cb-payment-method                  //amazon,paypal,bank account radio fields
+|-- #cb-payment-method-type             //amazon,paypal,bank account section
+|-- #cb-payment-wrapper                 //amazon,paypal,bank account content filled
+
+#cb-wrapper-ssp                         //customer portal
+|-- #cb-user-content                    //portal login,edit,change subscription forms
+    |-- #cb-payment-method
+    |-- #cb-payment-method-type
+    |-- #cb-payment-wrapper
+|-- #cb-content                         //portal details
+
+#chargebee-iframe                       //api checkout,card,portal pages
+|-- #cb-wrapper-hp
+|-- #cb-wrapper-ssp
+
+**/
+
+/*google fonts import*/
+/*@import url(//fonts.googleapis.com/css?family=Roboto|Lato);*/
+
+/*****************************************************************************
+ Bootstrap style override for both Hosted page and Portal.
+ *****************************************************************************/
+
+/* Body*/
+body {
+    font-size:13px;
+    color:#000000;
+    font-family:Roboto,Helvetica Neue, Helvetica, Arial, sans-serif;
+    background:#FEFEFE /*url(../images/backg.jpg)*/;
+}
+strong{
+    font-weight: normal;
+}
+/* Horizontal line */
+hr{
+    border-color:#D4D4D4;
+}
+
+/* hyperlink */
+a,
+.btn-link{
+    cursor:pointer;
+    color:#3F97BF;
+}
+a:hover,
+.btn-link:hover,
+.btn-link:focus{
+    color:#4AB3E2;
+}
+
+/* Form field label */
+label{
+    font-weight:normal;
+    color:#000000;
+}
+
+/* Heading*/
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family:Lato,Helvetica Neue, Helvetica, Arial, sans-serif;
+    color:#000000;
+}
+
+/*Address on portal billing and shipping details*/
+address{
+    margin-bottom:0;
+}
+
+/* Form field error message color*/
+.text-danger,
+a.text-danger:hover {
+    color:#F00F00;
+}
+a.text-danger:hover{
+    opacity: .8;
+}
+
+.row,
+.navbar > .container > .navbar-header,
+.navbar > .container > .navbar-collapse,
+.form-horizontal .form-group{
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.container, .navbar-brand, .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+/* Wrapper element (All the columns are wrapped inside this element) */
+.container {
+    max-width:816px;
+}
+
+/* Contains form label, input element(textbox/textarea/selectbox), error message */
+.form-group {
+    margin-bottom: 7px;
+}
+
+/*input and button*/
+.form-control,
+.form-control:focus,
+.input-group-addon,
+.btn,
+.btn:focus {
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    outline: none;
+}
+
+/* input element and input with addon element */
+.form-control,
+.input-group-addon {
+    font-size: 13px;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    background:#FFFFFF;
+    border-color:#D6D3CE;
+    color:#000000;
+}
+.form-control:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    background:#FFFFFF;
+    border-color:#4AB3E2;
+}
+.form-control[disabled] + .input-group-addon,
+.form-control[readonly] + .input-group-addon {
+    background: #EEE;
+    cursor: not-allowed;
+}
+.btn-default,
+.btn-primary,
+.btn-danger{
+    text-decoration: none!important;
+}
+.btn-primary,
+.btn-danger {
+    font-size: 16px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+/*Used on Apply coupon and Vat validation field on hosted pages*/
+.btn-default,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default[disabled],
+.btn-default[disabled]:hover,
+.btn-default[disabled]:focus{
+    background:#9BCC55;
+    border-color:#87B04C;
+    color:#FFFFFF;
+    display: none;
+}
+
+.btn-disabled {
+    opacity:.2;
+}
+
+/*Used on hosted and portal pages for main form submit*/
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary[disabled],
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:focus{
+    background:#9BCC55;
+    border-color:#87B04C;
+    color:#FFFFFF;
+}
+
+/*Used on portal, when cancel a subscription*/
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger[disabled],
+.btn-danger[disabled]:hover,
+.btn-danger[disabled]:focus{
+    background:#D9534F;
+    border-color:#D9534F;
+    color:#FFFFFF;
+}
+.btn-default:hover,
+.btn-primary:hover,
+.btn-danger:hover{
+    box-shadow: inset 0 -150px 0 rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: inset 0 -150px 0 rgba(0, 0, 0, 0.07);
+    -webkit-box-shadow: inset 0 -150px 0 rgba(0, 0, 0, 0.07);
+}
+/*Block level help text for form fields.*/
+.help-block {
+    color:#999999;
+}
+/*Date picker on custom field on hosted page*/
+.input-group.date{
+    width:100%;
+}
+/*Invoice table in portal*/
+.table-hover>tbody>tr:hover>td,
+.table-hover>tbody>tr:hover>th{
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+/************************************************************
+ Boostrap style override especially for Portal
+ ************************************************************/
+
+/*Used on portal details page*/
+.control-label {
+    color:#868686;
+}
+
+/*Used on portal details page show static data*/
+.form-horizontal .control-label,
+.form-horizontal .form-control-static{
+    word-wrap: break-word;
+}
+
+/*
+ * data-cb-jshook="attach-account-dropdown" to call account dropdown on portal details and edit pages.
+ */
+/*Navigation links on portal*/
+.navbar-collapse > .navbar-nav a{
+    color:#FFFFFF;
+}
+/*Account links toggle*/
+.navbar-collapse > .navbar-nav > .dropdown,
+.navbar-toggle{
+    font-size:13px;
+    font-family:arial,sans-serif;
+    margin:0;
+    margin-top: 10px;
+}
+/*Account dropdown*/
+.navbar-collapse > .navbar-nav > .dropdown > a{
+    min-width: 135px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color:#FFFFFF;
+    border:2px solid #FFFFFF;
+}
+.navbar-collapse > .navbar-nav > .dropdown > a:focus{
+    background: none;
+}
+.navbar-collapse > .navbar-nav a:hover,
+.navbar-collapse > .navbar-nav > .dropdown > a:hover,
+.navbar-collapse > .navbar-nav > .dropdown.open > a,
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus{
+    color:#3F97BF;
+    background:#F5F5F5;
+    border-color:#F5F5F5;
+}
+.navbar-collapse > .navbar-nav > .dropdown.open > a{
+    box-shadow: 0 2px 12px rgba(0,0,0,.175);
+    -moz-box-shadow: 0 2px 12px rgba(0,0,0,.175);
+    -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.175);
+}
+/*Account dropdown menu*/
+.navbar-collapse  .navbar-nav .dropdown-menu{
+    border: none;
+    min-width: 135px;
+    margin-top: -3px;
+    background:#F5F5F5;
+}
+/*Account dropdown menu links*/
+.navbar-collapse .navbar-nav .dropdown-menu a{
+    font-size:13px;
+    padding:3px 10px;
+    color: #3F97BF;
+}
+.navbar-collapse .navbar-nav a:hover{
+    background:#3F97BF;
+    color:#F5F5F5;
+}
+.nav .caret{
+    border-top-color:#FFFFFF;
+    border-bottom-color:#FFFFFF;
+}
+.nav a:hover .caret,
+.nav .open > a .caret,
+.nav .open > a:hover .caret,
+.nav .open > a:focus .caret{
+    border-top-color:#3F97BF;
+    border-bottom-color:#3F97BF;
+}
+
+/*Account dropdown menu icon on mobile*/
+.navbar-toggle .icon-bar{
+    background:#FFFFFF;
+}
+
+
+/*Used on portal details pages*/
+.page-header{
+    border-color:#E3E3E3;
+}
+
+/*Used on portal details page for invoice table*/
+.page-header + .table{
+    margin-top:-10px;
+}
+
+/*Alert messages on portal.*/
+.alert{
+    background: transparent;
+    border-radius:0;
+    -moz-border-radius:0;
+    -webkit-border-radius:0;
+    border-left-width:3px;
+    margin-bottom: 10px;
+}
+
+/*centred the alert messages.*/
+.text-center  > .alert{
+    display:inline-block;
+    text-align:justify;
+}
+
+/*info alert message*/
+.alert-info{
+    border-color:#79ACC1;
+    color:#72A2B6;
+}
+
+/*warning alert message*/
+.alert-warning{
+    border-color:#D59E18;
+    color:#E8BA49;
+}
+
+/*Test cards dropdown section*/
+.dropdown-menu.panel{
+    border:1px solid #D6D3CE;
+}
+
+/*************************************************************
+ Header and Footer with Bootstrap and ChargeBee style.
+**************************************************************/
+/* Header*/
+.navbar-static-top{
+    background:#4AB3E2;
+    color:#FFFFFF;
+}
+
+
+/* Brand Logo/Text*/
+.navbar-static-top .navbar-brand {
+    height:auto;
+    color:#FFFFFF;
+    font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+
+}
+
+/* Footer*/
+.navbar-static-bottom {
+    line-height: 23px;
+    padding: 15px 0;
+    margin: 0;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    text-align: center;
+    color:#FFFFFF;
+    background:#4AB3E2;
+}
+
+/*Need footer to be sticked, just add the "cb-sticky-footer" identifier in the footer.*/
+#cb-sticky-footer{
+    margin:0!important;
+}
+
+/**
+ * ChargeBee's custom styles - These styles are defined to ensure better styling of various sections.
+ **/
+
+/**********************************************************
+ ChargeBee styled for Hosted(checkout,card,portal) pages
+***********************************************************/
+
+/*select box without value*/
+.cb-select-placeholder {
+    color:#999;
+}
+
+/*select box with value*/
+.cb-select-opt {
+    color:#000000;
+}
+
+/* border dashed for any element which has this class */
+.dashed {
+    border-style: dashed;
+}
+
+/*
+ * #cb-wrapper-hp holds the content of ChargeBee Hosted Checkout and Card Page
+ * #cb-wrapper-ssp holds the content of ChargeBee Portal
+ */
+
+#cb-wrapper-hp,
+#cb-wrapper-ssp{
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/*Only call when sidebar is hidden on hosted checkout page*/
+
+/*Only call when sidebar is hidden on hosted card page*/
+
+/*Heading inside chargebee content on hosted pages*/
+#cb-wrapper-hp h3,
+#cb-wrapper-ssp h3,
+#cb-wrapper-ssp .page-header{
+    margin:0 0 9px;
+}
+/*Portal details page heading*/
+#cb-content h3,
+#cb-content h4{
+    margin:0;
+}
+/*Horizontal line inside chargebee content on hosted pages*/
+#cb-wrapper-hp hr,
+#cb-wrapper-ssp hr,
+.cb-well hr{
+    margin: 7px 0;
+    border-color:#E3E3E3;
+}
+
+/*Section with identifier for custom styling in hosted page and portal */
+/*The "cb-well" class used for the purpose of background, border and spacing. Don't use the override the class until know the purpose of it.*/
+#cb-main-content,
+#cb-billing,
+#cb-shipping,
+#cb-account,
+#cb-payment,
+.cb-well{
+    /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom: 15px;
+    padding:15px;
+    background-color:#F5F5F5;
+    border: 1px solid #E3E3E3;
+}
+
+/*Links are underline inside this class*/
+.cb-well a{
+    text-decoration:underline;
+}
+
+/***************************************************************
+ ChargeBee styled especially for Hosted checkout and card page
+****************************************************************/
+
+/*Order summary content in checkout page & Existing card details in update card page.*/
+#cb-main-content {
+    line-height: 18px;
+}
+
+/*Heading for order summary and Existing card details page.*/
+#cb-main-content h3 {
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    margin: -16px -16px 9px -16px;
+    padding: 9px 15px;
+    background:#4AB3E2;
+    color:#FFFFFF;
+}
+
+/* Order summary items list */
+#cb-main-content ul {
+    margin-bottom: 0;
+}
+#cb-main-content li{
+    padding:5px 0;
+}
+/*Fix max width for input group(Coupon filed comes in the order summary section to apply discount) */
+#cb-main-content .input-group {
+    max-width: 250px;
+}
+
+/*Order total on checkout page*/
+#cb-order-total{
+    font-size:16px;
+    margin-top: 10px;
+}
+/*Terms of service on checkout page*/
+#cb-tos a{
+    text-decoration: underline;
+}
+/*cards on checkout and update/add card page*/
+#cb-cvv span{
+    line-height: 12px;
+    margin: 0 0 0 5px;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+/*
+ * Styles that are specific for iframe embedded hosted page using API.
+ */
+#chargebee-iframe #cb-wrapper-hp {
+    max-width: 500px;
+    margin: auto;
+
+}
+
+/**********************************************************
+ ChargeBee styled especially for Portal
+***********************************************************/
+
+/*Reduced the margin space due to error comes on bottom*/
+#cb-wrapper-ssp .form-group{
+    margin-bottom:0;
+}
+
+#cb-wrapper-ssp hr{
+    border-style:dashed;
+}
+
+/*Reduced the margin space due to error comes on bottom*/
+#cb-wrapper-ssp .form-group{
+    margin-bottom:0;
+}
+
+/*#cb-progress identifier handle the alert and loading*/
+#cb-handle-progress{
+    position:relative;
+}
+
+/*basic alert override to be flash message*/
+.cb-alert-flash{
+    text-align: center;
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:0;
+}
+
+.cb-alert-flash .alert,
+.cb-alert-flash .loader{
+    background:#fff;
+    border:1px solid #ddd;
+    display: inline-block;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow:0 0 10px 0 rgba(0, 0, 0, 0.05);
+    -moz-box-shadow:0 0 10px 0 rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow:0 0 10px 0 rgba(0, 0, 0, 0.05);
+    padding:4px 8px;
+}
+
+.cb-alert-flash .alert-success{
+    color:#69ad22;
+}
+
+.cb-alert-flash .alert-warning{
+    color:#e8ba4a;
+}
+
+.cb-alert-flash .alert-danger{
+    color:#cc3335;
+}
+
+.cb-alert-flash .alert .glyphicon{
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.cb-alert-flash .loader .cb-process{
+    padding:1px 12px;
+}
+
+/*Subscripiton status*/
+.cb-subscription-status{
+    padding: 1px 6px;
+    font-size: 12px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    position: relative;
+    margin: 0 3px;
+    display: inline-block;
+    font-family: Roboto,Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #FFFFFF;
+}
+
+/*Subscripiton status future*/
+.cb-subscription-status.future{
+    background:#91388C;
+}
+
+/*Subscripiton status in trial*/
+.cb-subscription-status.in_trial{
+    background:#E8BA4A;
+}
+
+/*Subscripiton status active*/
+.cb-subscription-status.active{
+    background:#69AD22;
+}
+
+/*Subscripiton status non renewing*/
+.cb-subscription-status.non_renewing{
+    background:#555F78;
+}
+
+/*Subscripiton status cancelled*/
+.cb-subscription-status.cancelled{
+    background:#CC3335;
+}
+
+/*Identifier contains the login,signup,change password,manage subscription,account,billing form in portal edit page.*/
+#cb-user-content{
+    margin-left:auto;
+    margin-right:auto;
+    max-width:500px;
+}
+
+/*Subscription manage list on portal edit page*/
+.cb-subscription-manage dl{
+    padding:12px 0;
+    margin:0;
+}
+
+.cb-subscription-manage dl + dl{
+    border-top:1px dashed #E3E3E3;
+}
+
+.cb-subscription-manage dt,
+.cb-subscription-manage dd{
+    padding:0;
+    font-weight: normal;
+}
+
+/*Order list on portal details page*/
+.cb-subscribed-items li{
+    padding:7px 0;
+    border-bottom:1px dashed #E3E3E3;
+}
+
+/*Order total on portal details page*/
+.cb-subscribed-total{
+    font-size:16px;
+    margin-left:10px;
+}
+
+/*Invoice table on portal details page*/
+#cb-portal-invoice-table{
+    border-top:1px solid #E3E3E3;
+    border-bottom:1px solid #E3E3E3;
+}
+
+#cb-portal-invoice-table td{
+    white-space:nowrap;
+    border-color:#E3E3E3;
+}
+
+/*glyphicon on portal page*/
+#cb-content .page-header a .glyphicon,
+#cb-portal-invoice-table .glyphicon{
+    margin:0 5px;
+}
+
+/*Invoice success color*/
+#cb-portal-portal-invoices .text-success{
+    color:#69ad22;
+}
+
+/*Invoice payment due color*/
+#cb-portal-portal-invoices .text-warning{
+    color:#e8ba4a;
+}
+
+/*Invoice Not paid color*/
+#cb-portal-portal-invoices .text-danger{
+    color:#cc3335;
+}
+
+/******************************
+ Change Subscription on portal
+ *****************************/
+/*Change Subscription header*/
+.cb-product-header{
+    margin: -15px -15px 10px -15px;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-bottom:1px solid #E3E3E3;
+}
+/*Change Subscription steps*/
+.cb-product-steps{
+    display: table;
+    width: 100%;
+    font-size:12px;
+}
+.cb-product-step{
+    padding: 10px;
+    padding-left:20px;
+    position: relative;
+    display: table-cell;
+    text-align:center;
+    border: 1px solid #E3E3E3;
+    background: #F5F5F5;
+}
+.cb-product-step:first-child{
+    padding-left: 10px;
+    border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 5px 0 0 5px;
+}
+.cb-product-step:last-child{
+    border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    -webkit-border-radius: 0 5px 5px 0;
+}
+/*Change Subscription steps arrow*/
+.cb-product-step:before,
+.cb-product-step:after{
+    content: '';
+    position: absolute;
+    right: -15px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    z-index: 5;
+    top: 0;
+    margin:auto;
+    border-top: 18px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-left: 15px solid #F5F5F5;
+}
+.cb-product-step:after{
+    right: -16px;
+    z-index: 4;
+    border-left-color:#E3E3E3;
+}
+.cb-product-step:last-child:before,
+.cb-product-step:last-child:after{
+    border:none;
+}
+/*Change subscription previous step done and can be editable*/
+.cb-product-step.done.active{
+    cursor:pointer;
+    color:#4AB3E2;
+    background:#FFFFFF;
+}
+.cb-product-step.active.done:before{
+    border-left-color:#FFFFFF;
+}
+/*Change subscription current step*/
+.cb-product-step.current{
+    pointer-events:none;
+    cursor: default;
+    background:#4AB3E2;
+    color:#FFFFFF;
+}
+.cb-product-step.current:before{
+    border-left-color:#4AB3E2;
+}
+/*Change subscription next step with disabled*/
+.cb-product-step.future.disabled{
+    pointer-events:none;
+    cursor: default;
+    background: #E3E3E3;
+}
+.cb-product-step.future.disabled:after{
+    border-left-color: #F5F5F5;
+}
+.cb-product-step.future.disabled:before{
+    border-left-color: #E3E3E3;
+}
+/*Change Subscription current product*/
+.cb-product-box{
+    padding:10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-bottom:15px;
+    background-color:#ffffff;
+    border:1px solid #E3E3E3;
+}
+.cb-product-box hr{
+    border-style:solid!important;
+}
+.cb-product-title{
+    font-size:16px;
+    font-weight: bold;
+}
+.cb-product-item{
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.cb-product-list ~ .cb-product-title{
+    margin-top:20px;
+}
+/*Change Subscription review product grand total*/
+.cb-product-grand-total{
+    font-size:16px;
+    font-weight: bold;
+}
+/*Change Subscription available products to pick*/
+.cb-available-list{
+    max-height:400px;
+    overflow-y:auto;
+    margin-bottom:15px;
+}
+.cb-available-list .radio,
+.cb-available-list .checkbox{
+    margin-top:7px;
+    margin-bottom:7px;
+}
+/*Change subscription avialable product list on plan, highlight the current product*/
+.cb-has-select .cb-available-item{
+    padding:0 7px;
+    margin:3px 0;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border:2px solid transparent;
+}
+.cb-available-item.selected{
+    border-color:#E3E3E3;
+}
+
+/*Change Subscription pick product quantity field*/
+.cb-available-pick .form-control{
+    height: auto;
+    padding: 0;
+    padding-left : 5px;
+    margin: 0 5px;
+    width: 40px;
+    display: inline;
+    min-height: 1px;
+}
+/*Change Subscription picked product price*/
+.cb-available-pick-price{
+    width:65px;
+    display:inline-block;
+}
+/*Only if qty is present, due to mobile purpose*/
+/*Change Subscription picked product price*/
+.cb-available-pick .form-control + .cb-available-pick-price{
+    text-align: right;
+}
+/*
+ * Media queries to assign different style depending on browser window size.
+ */
+@media (min-width: 768px) {
+    .navbar > .container .navbar-brand {
+        margin-left:0;
+        padding-left:0;
+    }
+    .navbar > .container > .navbar-header,
+    .navbar > .container > .navbar-collapse ,
+    .navbar-nav.navbar-right:last-child{
+        margin-left:0;
+        margin-right:0;
+    }
+    /* Margin space for form group if placed near inline form */
+    .form-inline .form-group ~ .form-group {
+        margin-left: 8px;
+    }
+    #cb-handle-progress{
+        min-height: 50px;
+    }
+    .cb-subscription-status{
+        top:-4px;
+    }
+    /* Portal heading with links like(edit,add).
+       Change subscription step nav links like(previous, next)*/
+    .cb-well .page-header a,
+    .cb-step-nav{
+        margin-top:7px;
+        float:right;
+    }
+    /*logout link for api users*/
+    .cb-api-logout,
+    .cb-api-logout:hover{
+        background:none!important;
+        text-decoration:underline!important;
+        margin-top:2px;
+        color:#FFFFFF!important;
+    }
+    /*Invoice table has description on portal details page*/
+    .cb-portal-invoice-desc{
+        max-width:250px;
+        display:inline-block;
+    }
+    /*Invoice table has details on portal details page*/
+    .cb-portal-invoice-details{
+        margin-left:13px;
+    }
+    /*Change Subscription product total*/
+    .cb-product-total,
+    .cb-available-pick{
+        text-align:right;
+    }
+    /*Change Subscription available product has qty*/
+    .cb-avail-has-qty .radio label,
+    .cb-avail-has-qty .checkbox label{
+        float:left;
+        max-width:250px;
+    }
+}
+@media (max-width: 767px) {
+    h1, h2, h3, .h1, .h2, .h3 {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .form-control,
+    .btn,
+    .input-group-addon{
+        min-height: 40px;
+    }
+    .center-xs {
+        float: none !important;
+        clear: both;
+        text-align: center;
+        display: block;
+    }
+    .center-xs + .center-xs {
+        margin-top: 7px;
+    }
+    /*Portal details and edit page with account dropdown. So the logo has to be left always.*/
+    .navbar-static-top .navbar-header.pull-left{
+        float: none!important;
+    }
+    .navbar-static-top .navbar-header.pull-left .navbar-brand {
+        max-width: 250px;
+        float: left;
+        text-align: left;
+    }
+    .cb-well .page-header a,
+    .cb-step-nav a{
+        padding: 2px 7px;
+        border-radius: 20px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        text-decoration: none;
+        display: inline-block;
+        border: 1px solid #3F97BF;
+    }
+    .cb-well .page-header a:hover,
+    .cb-step-nav a:hover{
+        border-color:#4AB3E2;
+        background:#4AB3E2;
+        color:#F5F5F5;
+    }
+    .cb-well .page-header a,
+    .cb-nav-next{/*Change subscription steps previous navigation*/
+        float:right;
+    }
+    .cb-main-footer .form-inline .form-group .btn,
+    #cb-wrapper-ssp .form-inline .form-group .btn,
+    #cb-user-content form .cb-step-nav + .clearfix .btn,/*change subscription in portal*/
+    #cb-user-content form .cb-step-nav + .clearfix a,
+    #cb-user-content form .form-group + .text-center a,/*change password in portal*/
+    #cb-payment-wrapper .form-inline .form-group .btn{
+        margin-bottom: 15px;
+        display: block;
+        width: 100%;
+    }
+    .cb-main-footer .form-inline .form-group a.btn,
+    #cb-wrapper-ssp .form-inline .form-group a.btn,
+    #cb-user-content form .cb-step-nav + .clearfix a,
+    #cb-user-content form .form-group + .text-center a{
+        text-decoration: none;
+        min-height: 40px;
+        padding: 10px;
+        line-height: 1;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border: 2px solid #3F97BF;
+    }
+    /*process center of the page on mobile for coupon and subscribe*/
+    #cb-wrapper-hp .cb-process,
+    #cb-handle-progress .loader{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background-color: #FFF;
+        color: #000;
+        line-height: 18px;
+        padding: 15px;
+        border-width:0;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+    #cb-wrapper-hp .cb-process{
+        padding-left: 50px;
+        background-position: 20px center;
+    }
+    #cb-portal-invoice-table td {
+        display: block;
+        border: none;
+        text-align: right;
+        padding:5px;
+    }
+    #cb-portal-invoice-table td[data-cb-invoice]:before {
+        content: attr(data-cb-invoice);
+        float: left;
+        color:#868686;
+    }
+    #cb-portal-invoice-table td:last-child{
+        border-bottom:1px solid #E3E3E3!important;
+    }
+    /*Invoice prev/next link*/
+    .cb-portal-invoice-details span.text-muted,
+    .cb-portal-invoice-details a{
+        padding: 3px 10px;
+        font-size: 13px;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        text-decoration: none;
+    }
+    .cb-portal-invoice-details span.text-muted{
+        border-color:#999999;
+        background:#999999;
+        color:#F5F5F5;
+    }
+    .cb-portal-invoice-details a{
+        border-color: #3F97BF;
+    }
+    .cb-portal-invoice-details a:hover{
+        border-color: #4AB3E2;
+        background:#4AB3E2;
+        color:#F5F5F5;
+    }
+    .cb-portal-invoice-details .center-xs + .center-xs{
+        margin-top: 30px;
+    }
+    .cb-available-pick{
+        margin-top:10px;
+    }
+}
+@media (min-width: 500px) {
+    #chargebee-iframe .col-sm-12 {
+        float: left;
+        width: 100%;
+    }
+    #chargebee-iframe .col-sm-11 {
+        float: left;
+        width: 91.66666666666666%;
+    }
+    #chargebee-iframe .col-sm-10 {
+        float: left;
+        width: 83.33333333333334%;
+    }
+    #chargebee-iframe .col-sm-9 {
+        float: left;
+        width: 75%;
+    }
+    #chargebee-iframe .col-sm-8 {
+        float: left;
+        width: 66.66666666666666%;
+    }
+    #chargebee-iframe .col-sm-7 {
+        float: left;
+        width: 58.333333333333336%;
+    }
+    #chargebee-iframe .col-sm-6 {
+        float: left;
+        width: 50%;
+    }
+    #chargebee-iframe .col-sm-5 {
+        float: left;
+        width: 41.66666666666667%;
+    }
+    #chargebee-iframe .col-sm-4 {
+        float: left;
+        width: 33.33333333333333%;
+    }
+    #chargebee-iframe .col-sm-3 {
+        float: left;
+        width: 25%;
+    }
+    #chargebee-iframe .col-sm-2 {
+        float: left;
+        width: 16.666666666666664%;
+    }
+    #chargebee-iframe .col-sm-1 {
+        float: left;
+        width: 8.333333333333332%;
+    }
+}

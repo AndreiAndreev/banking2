@@ -1,0 +1,37 @@
+/**
+ * CSS file with CSS classes used by the tagger plugin.
+ */
+.tagger {
+    margin-top: 20px;
+}
+
+.tagger .tag{
+    position: relative;
+    left: -5px;
+    background: #D66806;
+    border-radius: 2px 0 0 2px;
+    padding: 5px 10px 5px;
+}
+
+.tagger .label {
+    margin-right: 5px;
+    cursor: default;
+    background: #EE7407;
+    padding: 5px;
+    font-size: 100%;
+    border-radius: 2px;
+    font-weight: 100;
+}
+
+.tagger .label i {
+    position: relative;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.tagger-tag-list {
+
+}
+
+.tagger-form {
+}

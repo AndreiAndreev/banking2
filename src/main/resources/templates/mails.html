@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Found Prospects</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+    <!-- Bootstrap 3.3.5 -->
+    <link type="text/css" rel="stylesheet" href="../static/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+    <!--Bootstrap Table style -->
+    <link rel="stylesheet" href="../static/bootstrap-table/src/bootstrap-table.css"
+          th:href="@{/bootstrap-table/src/bootstrap-table.css}"/>
+
+    <!-- Editable table style -->
+    <link rel="stylesheet" href="../static/bootstrap3-editabl/css/bootstrap-editable.css"
+          th:href="@{/bootstrap3-editabl/css/bootstrap-editable.css}"/>
+
+    <!-- Editable table style -->
+    <link rel="stylesheet" href="../static/bootstrap3-editabl/css/bootstrap-editable.css"
+          th:href="@{/bootstrap3-editabl/css/bootstrap-editable.css}"/>
+
+    <!-- Animation -->
+    <link type="text/css" rel="stylesheet" href="../static/css/animate.min.css"
+          th:href="@{/css/animate.min.css}"/>
+
+    <!-- Custom style -->
+    <link rel="stylesheet" href="../static/custom/css/custom.css"
+        th:href="@{/custom/css/custom.css}"/>
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/>
+
+    <link type="text/css" rel="stylesheet" href="../static/css/sweetalert.css"
+          th:href="@{/css/sweetalert.css}"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+     WARNING: Respond.js doesn't work if you view the page via file://
+    [if lt IE 9]>-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!--<![endif]-->
+</head>
+<body class="skin-purple" style="background-color: #fff;">
+
+<!-- Top menu -->
+<div data-th-replace="fragments/navbar :: nav-bar"></div>
+
+<div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content">
+        <!-- Main content -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="animated fadeInDown">Found Prospects</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-content">
+                    <div id="toolbar">
+                        <div class="dt-buttons btn-group">
+                            <button id="add" class="btn btn-default buttons-create" tabindex="0"
+                                    aria-controls="example">
+                                <i class="glyphicon glyphicon-plus"></i> New Prospect
+                            </button>
+                            <button id="remove" class="btn btn-default buttons-selected buttons-remove" tabindex="0"
+                                    aria-controls="example" disabled="">
+                                <i class="glyphicon glyphicon-remove"></i> Delete
+                            </button>
+                            <div class="col-md-4">
+                                <input class="form-control" type="text" id="newName" placeholder="List Name"/>
+                            </div>
+                            <button id="addList" class="btn btn-default buttons-selected buttons-remove" tabindex="0"
+                                    aria-controls="example" >
+                                <i class="glyphicon glyphicon-plus"></i> Add new list
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group" data-required="true">
+                        <label class="control-label">Lists</label>
+                        <select class="form-control" th:field="*{lists}" id="myLists">
+                            <option
+                                    th:each="list : ${lists}"
+                                    th:value="${list}"
+                                    th:text="${list.listName}">
+                            </option>
+                        </select>
+                        <span class="help-block"></span>
+                    </div>
+                    <!-- /#toolbar -->
+                    <div id="paid"  th:if="*{userID} != 2">
+                    <table id="table"
+                           data-toolbar="#toolbar"
+                           data-search="true"
+                           data-show-refresh="true"
+                           data-show-toggle="true"
+                           data-show-columns="true"
+                           data-show-export="true"
+                           data-detail-view="true"
+                           data-detail-formatter="detailFormatter"
+                           data-minimum-count-columns="2"
+                           data-pagination="true"
+                           data-id-field="id"
+                           data-page-list="[10, 25, 50, 100, ALL]"
+                           data-url="prospects/get_mails">
+                    </table>
+                        </div>
+                    <div id="free" th:if="*{userID} == 2">
+                    <table id="table"
+                           data-toolbar="#toolbar"
+                           data-search="true"
+                           data-show-refresh="true"
+                           data-show-toggle="true"
+                           data-show-columns="true"
+                           data-show-export="true"
+                           data-detail-view="true"
+                           data-detail-formatter="detailFormatter"
+                           data-minimum-count-columns="2"
+                           data-pagination="true"
+                           data-id-field="id"
+                           data-page-list="[10, 25, 50, 100, ALL]"
+                           data-url="prospects/get_mails">
+                        </table>
+                        </div>
+                </div>
+                <!--/.tab-content-->
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Add Lead</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="data-input-fields">
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    <input id="name" class="form-control" placeholder="name"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                    <input id="surname" class="form-control" placeholder="surname"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                    <input id="e-mail" class="form-control" placeholder="e-mail"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-line-chart"></i>
+                                        </span>
+                                    <input id="relevance" class="form-control" placeholder="relevance"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-user-secret"></i>
+                                        </span>
+                                    <input id="job" class="form-control" placeholder="job"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-building"></i>
+                                        </span>
+                                    <input id="company-name" class="form-control" placeholder="company name"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-building"></i>
+                                        </span>
+                                    <input id="company-link" class="form-control" placeholder="company link"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-building"></i>
+                                        </span>
+                                    <input id="linkedin-url" class="form-control" placeholder="linkedin URL"/>
+                                </div>
+                                <div class="form-group input-group">
+                                        <span class="input-group-addon min-width-addons">
+                                            <i class="fa fa-building"></i>
+                                        </span>
+                                    <select class="form-control" th:field="*{normalLists}" id="newSelList">
+                                        <option
+                                                th:each="list1 : ${normalLists}"
+                                                th:value="${list1}"
+                                                th:text="${list1.listName}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" id="save" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<!--/.container-->
+
+<!-- Footer -->
+<footer class="navbar-fixed-bottom" style="background-color: #fff;">
+    Need more? Please contact us at
+    <a href="mailto:sales@prospecting.io" style="color: #716C6C">sales@prospecting.io</a>
+</footer>
+
+<!--jQuery 2.1.4-->
+<script src="../static/js/jQuery-2.1.4.min.js"
+        th:src="@{/js/jQuery-2.1.4.min.js}"></script>
+
+<!-- Bootstrap 3.3.5 -->
+<script src="../static/js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
+
+<!-- Bootstrap table script -->
+<script src="../static/bootstrap-table/src/bootstrap-table.js"
+        th:src="@{/bootstrap-table/src/bootstrap-table.js}"></script>
+
+<!-- Bootstrap table export script -->
+<script src="../static/bootstrap-table/src/extensions/export/bootstrap-table-export.js"
+        th:src="@{/bootstrap-table/src/extensions/export/bootstrap-table-export.js}"></script>
+
+<!-- Table export script-->
+<script src="../static/bootstrap3-editabl/js/tableExport.js"
+        th:src="@{/bootstrap3-editabl/js/tableExport.js}"></script>
+
+<!-- Bootstrap table editable script -->
+<script src="../static/bootstrap-table/src/extensions/editable/bootstrap-table-editable.js"
+        th:src="@{/bootstrap-table/src/extensions/editable/bootstrap-table-editable.js}"></script>
+
+<!-- Bootstrap editable script-->
+<script src="../static/bootstrap3-editabl/js/bootstrap-editable.js"
+        th:src="@{/bootstrap3-editabl/js/bootstrap-editable.js}"></script>
+
+<!-- Custom script -->
+<script src="../static/custom/js/custom.js"
+        th:src="@{/custom/js/custom.js}"></script>
+
+<script src="../static/js/sweetalert.min.js"
+        th:src="@{/js/sweetalert.min.js}"></script>
+
+<script>
+    $(document).ready(function () {
+        document.getElementById("logo_black").style.display = 'inherit';
+        document.getElementById("logo_white").style.display = 'none';
+        document.getElementById("mainNav").style.backgroundColor = '#f7f7f7';
+    })
+
+    $('li').css({"margin-top": "6px"});
+</script>
+
+</body>
+</html>
